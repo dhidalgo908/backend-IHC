@@ -455,7 +455,7 @@ app.post('/api/auth/forgot-password', async (req, res) => {
     try {
         const { email } = req.body;
         if (!email) {
-            return sendResponse(res, false, 'Ingrese su correo electrÃ³nico', null, 400);
+            return sendResponse(res, false, 'Ingrese su correo electrónico', null, 400);
         }
 
         const users = await queryAsync('SELECT id FROM admin_users WHERE email = ? LIMIT 1', [email]);
@@ -468,7 +468,7 @@ app.post('/api/auth/forgot-password', async (req, res) => {
             console.log(`Token de recuperaciÃ³n para ${email}: ${resetToken}`);
         }
 
-        sendResponse(res, true, 'Si el correo existe, se generÃ³ una solicitud de recuperaciÃ³n.');
+        sendResponse(res, true, 'Si el correo existe, se generará una solicitud de recuperación.');
     } catch (error) {
         console.error('Error recuperaciÃ³n:', error);
         sendResponse(res, false, 'Error al procesar la recuperaciÃ³n', null, 500);
