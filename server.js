@@ -361,7 +361,7 @@ app.post('/api/auth/login', async (req, res) => {
 
         const user = users[0];
         if (!user || !user.is_active) {
-            return sendResponse(res, false, 'Credenciales invÃ¡lidas', null, 401);
+            return sendResponse(res, false, 'Credenciales invalidas', null, 401);
         }
 
         let validPassword = false;
@@ -376,7 +376,7 @@ app.post('/api/auth/login', async (req, res) => {
         }
 
         if (!validPassword) {
-            return sendResponse(res, false, 'Credenciales invÃ¡lidas', null, 401);
+            return sendResponse(res, false, 'Credenciales invalidas', null, 401);
         }
 
         await queryAsync('UPDATE admin_users SET last_login = NOW() WHERE id = ?', [user.id]);
@@ -388,10 +388,10 @@ app.post('/api/auth/login', async (req, res) => {
             createdAt: Date.now()
         });
 
-        sendResponse(res, true, 'Inicio de sesiÃ³n correcto', { token, user: safeUser });
+        sendResponse(res, true, 'Inicio de sesion correcto', { token, user: safeUser });
     } catch (error) {
         console.error('Error login:', error);
-        sendResponse(res, false, 'Error al iniciar sesiÃ³n', null, 500);
+        sendResponse(res, false, 'Error al iniciar sesion', null, 500);
     }
 });
 
