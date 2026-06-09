@@ -804,21 +804,21 @@ app.use((err, req, res, next) => {
 
 async function startServer() {
     try {
-        // Verificar conexiÃ³n a BD
+        // Verificar conexion a BD
         const connected = await connectDB();
         if (!connected) {
-            console.error('âŒ No se pudo conectar a la base de datos');
+            console.error('No se pudo conectar a la base de datos');
             process.exit(1);
         }
         await ensureDatabaseSchema();
 
         app.listen(PORT, () => {
-            console.log(`\nðŸš€ Servidor corriendo en http://localhost:${PORT}`);
-            console.log(`ðŸ“Š API disponible en http://localhost:${PORT}/api/`);
-            console.log(`ðŸ“ Ejecutar setup: npm run setup\n`);
+            console.log(`Servidor corriendo en https://backend-ihc.onrender.com`);
+            console.log(`API disponible en https://backend-ihc.onrender.com`);
+            console.log(`Ejecutar setup: npm run setup\n`);
         });
     } catch (error) {
-        console.error('âŒ Error iniciando servidor:', error);
+        console.error('Error iniciando servidor:', error);
         process.exit(1);
     }
 }
