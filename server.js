@@ -14,7 +14,7 @@ require('dotenv').config();
 const { connectDB, queryAsync } = require('./database');
 
 const app = express();
-const PORT = 8001;
+const PORT = process.env.PORT || 8001;
 const sessions = new Map();
 
 const CITAS_SELECT = `
@@ -319,7 +319,7 @@ function validateRegisterInput({ username, email, password, full_name }) {
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '../frontend')));
+//app.use(express.static(path.join(__dirname, '../frontend')));
 
 // Middleware de logging
 app.use((req, res, next) => {
@@ -778,7 +778,11 @@ app.get('/api/horarios-disponibles', async (req, res) => {
 // ============================================
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/login.html'));
+    res.json({
+        success: true,
+        message: 'API de Sistema de Agendamiento funcionando',
+        version: '1.0'
+    });
 });
 
 // ============================================
